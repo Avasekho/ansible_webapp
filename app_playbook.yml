@@ -11,7 +11,7 @@
       - default-jdk
       - maven
       state: present
-      update_cache: yes
+    update_cache: yes
 
 # building war
 - name: build war
@@ -39,7 +39,7 @@
     apt:
       name: tomcat9
       state: present
-      update_cache: yes
+    update_cache: yes
 
   - name: Ensure tomcat9 service is started
     service:
@@ -47,7 +47,7 @@
       state: started
 
 # launching war
-- name: Copy war from build to app server
+- name: copy war
   hosts: app
   become: yes
 
