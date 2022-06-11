@@ -15,8 +15,8 @@
 
 # building war
 - name: build war
-    hosts: build
-    become: yes
+  hosts: build
+  become: yes
 
   tasks:
   - name: clone files from Git repository
