@@ -24,7 +24,6 @@
       repo: 'https://github.com/boxfuse/boxfuse-sample-java-war-hello.git'
       dest: /tmp/
 
-  tasks:
   - name: package war
     shell:
       chdir: /tmp/boxfuse
@@ -42,7 +41,6 @@
       state: present
       update_cache: yes
 
-  tasks:
   - name: Ensure tomcat9 service is started
     service:
       name: tomcat9
