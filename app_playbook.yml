@@ -4,21 +4,14 @@
   hosts: build
   become: yes
 
-  tasks: Update cache
-    apt:
-      update_cache: yes
-
   tasks:
   - name: Ensure default-jdk package is installed
     apt:
-      name: default-jdk
+      pkg:
+      - default-jdk
+      - maven
       state: present
-
-  tasks:
-  - name: Ensure maven package is installed
-    apt:
-      name: maven
-      state: present
+      update_cache: yes
 
 # building war
 - name: build war
@@ -42,15 +35,12 @@
   hosts: app
   become: yes
 
-  tasks: Update cache
-   apt:
-     update_cache: yes
-
   tasks:
   - name: Ensure tomcat9 package is installed
     apt:
       name: tomcat9
       state: present
+      update_cache: yes
 
   tasks:
   - name: Ensure tomcat9 service is started
