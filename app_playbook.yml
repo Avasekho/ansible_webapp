@@ -1,1 +1,56 @@
 ---
+# build server
+- name: install maven
+  hosts: build
+  become: yes
+
+tasks:
+  - name: Ensure apt packages are updated
+    apt:
+      name: default-jdk
+      state: present
+
+tasks:
+  - name: Ensure default-jdk package is installed
+    apt:
+      name: default-jdk
+      state: present
+
+tasks:
+  - name: Ensure maven package is installed
+    apt:
+      name: maven
+      state: present
+
+- name: build war
+  hosts: build
+  become: yes
+
+#- name: Copy war from build to app server
+
+# app server
+- name: install tomcat
+  hosts: app
+  become: yes
+
+tasks:
+  - name: Ensure apt packages are updated
+    apt:
+      name: default-jdk
+      state: present
+
+tasks:
+  - name: Ensure tomcat9 package is installed
+    apt:
+      name: tomcat9
+      state: present
+
+tasks:
+- name: Ensure tomcat9 service is started
+  service:
+  name: tomcat9
+  state: started
+
+
+
+
