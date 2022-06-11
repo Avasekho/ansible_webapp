@@ -4,17 +4,17 @@
   hosts: build
   become: yes
 
-tasks: Update cache
-   apt:
-     update_cache: yes
+  tasks: Update cache
+    apt:
+      update_cache: yes
 
-tasks:
+  tasks:
   - name: Ensure default-jdk package is installed
     apt:
       name: default-jdk
       state: present
 
-tasks:
+  tasks:
   - name: Ensure maven package is installed
     apt:
       name: maven
@@ -22,16 +22,16 @@ tasks:
 
 # building war
 - name: build war
-  hosts: build
-  become: yes
+    hosts: build
+    become: yes
 
-tasks:
+  tasks:
   - name: clone files from Git repository
     git:
       repo: 'https://github.com/boxfuse/boxfuse-sample-java-war-hello.git'
       dest: /tmp/
 
-tasks:
+  tasks:
   - name: package war
     shell:
       chdir: /tmp/boxfuse
@@ -42,17 +42,17 @@ tasks:
   hosts: app
   become: yes
 
-tasks: Update cache
+  tasks: Update cache
    apt:
      update_cache: yes
 
-tasks:
+  tasks:
   - name: Ensure tomcat9 package is installed
     apt:
       name: tomcat9
       state: present
 
-tasks:
+  tasks:
   - name: Ensure tomcat9 service is started
     service:
       name: tomcat9
@@ -63,8 +63,7 @@ tasks:
   hosts: app
   become: yes
 
-tasks:
-  - name: Copy war to tomcat folder
+  tasks:
     synchronize:
       mode: push
       src: /tmp/boxfuse-sample-java-war-hello/target/hello-1.0.war
