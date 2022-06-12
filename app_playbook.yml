@@ -22,7 +22,7 @@
   - name: clone files from Git repository
     git:
       repo: 'https://github.com/boxfuse/boxfuse-sample-java-war-hello.git'
-      dest: /tmp/
+      dest: /tmp/boxfuse
 
   - name: package war
     shell:
@@ -54,6 +54,6 @@
   - name: copy artefact to app server
     synchronize:
       mode: push
-      src: /tmp/boxfuse-sample-java-war-hello/target/hello-1.0.war
+      src: /tmp/boxfuse/target/hello-1.0.war
       dest: rsync://app/usr/local/tomcat9/webapps/
     delegate_to: build
