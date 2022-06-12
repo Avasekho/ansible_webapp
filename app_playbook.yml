@@ -50,6 +50,7 @@
   become: yes
 
   tasks:
+  - name: copy artefact to app server
     synchronize:
       mode: push
       src: /tmp/boxfuse-sample-java-war-hello/target/hello-1.0.war
