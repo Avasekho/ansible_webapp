@@ -46,14 +46,22 @@
       state: started
 
 # launching war
-- name: copy war
+- name: pull war from build server
+  hosts: build
+  become: yes
+
+  tasks:
+  - name: pull artifact from build server
+    fetch:
+      src: "/tmp/boxfuse/target/hello-1.0.war"
+      dest: "/tmp/shared_folder/hello-1.0.war"
+
+- name: push war to app server
   hosts: app
   become: yes
 
   tasks:
-  - name: copy artefact to app server
-    synchronize:
-      mode: push
-      src: /tmp/boxfuse/target/hello-1.0.war
-      dest: rsync://app/usr/local/tomcat9/webapps/
-    delegate_to: build
+  - name: push artifact to app server
+    copy:
+      src: "/tmp/shared_folder/hello-1.0.war"
+      dest: "/var/lib/tomcat9/webapps/hello-1.0.war"
