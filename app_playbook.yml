@@ -55,6 +55,7 @@
     fetch:
       src: "/tmp/boxfuse/target/hello-1.0.war"
       dest: "/tmp/shared_folder/hello-1.0.war"
+      flat: yes
 
 - name: push war to app server
   hosts: app
