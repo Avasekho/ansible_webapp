@@ -10,6 +10,7 @@
       pkg:
       - default-jdk
       - maven
+      - git
       state: present
 
 # building war
