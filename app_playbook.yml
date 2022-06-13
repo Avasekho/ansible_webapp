@@ -54,6 +54,6 @@
   - name: push artifact from build server
     synchronize:
       src: /tmp/boxfuse/target/hello-1.0.war
-      dest: rsync://app//var/lib/tomcat9/webapps/hello-1.0.war
+      dest: rsync://app/var/lib/tomcat9/webapps/hello-1.0.war
     delegate_to: build
       
